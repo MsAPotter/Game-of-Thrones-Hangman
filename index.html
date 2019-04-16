@@ -5,308 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Game of Thrones Hangman</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header-container">
+        <h1>Game of Thrones Hangman</h1>
+    </header>
 
-    <h1>Game of Thrones Hangman</h1>
-
-    <h2>placeholder</h2>
-
-    <div id="guess-what-phrase" width="30px">
-    </div>
-
-<!-- Reference for Thumbnail with Overlay Caption ------------------>
-<!--  https://gist.github.com/petehouston/85dd33210c0764eeae55  -->
-<div class="container">
-    <div class="row" id="box-search">
-        <div class="thumbnail text-center letter" data-letter="a">
-            <img src="images/arya_stark.jpg" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>A</p></div>
-        </div>
+    <h2>Score: <span id="score">0</span></h2>
     
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="b">
-            <img src="images/brienne.jpg" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>B</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="c">
-            <img src="images/cersei.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>C</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="d">
-            <img src="images/daenerys_targaryan.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>D</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="e">
-            <img src="images/eddard stark.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>E</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="f">
-            <img src="images/frey.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>F</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="g">
-            <img src="images/gendry.webp" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>G</p></div>
-        </div>
-    <!-- </div> -->
-    <!-- <div class="row" id="box-search"> -->
-        <div class="thumbnail text-center letter" data-letter="h">
-            <img src="images/hodor.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>H</p></div>
-        </div>
-        <div class="thumbnail text-center letter" data-letter="i">
-            <img src="images/ilyn payne.png" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-            <div class="caption"><p>I</p></div>
-        </div>
+
+    <div class="placeholder">placeholder</div>
+
+    <div id="phrase" width="30px"></div>
+    
+    <div class="top-row">
+        <button id="a" class="button img imga">
+            <p>A</p>
+        </button>
+        <button id="b" class="button img imgb">
+            <p>B</p>
+        </button>
+        <button id="c" class="button img imgc">
+            <p>C</p>
+        </button>
+        <button id="d" class="button img imgd">
+            <p>D</p>
+        </button>
+        <button id="e" class="button img imge">
+            <p>E</p>
+        </button>
+        <button id="f" class="button img imgf">
+            <p>F</p>
+        </button>
+        <button id="g" class="button img imgg">
+            <p>G</p>
+        </button>
+        <button id="h" class="button img imgh">
+            <p>H</p>
+        </button>
+        <button id="i" class="button img imgi">
+            <p>I</p>
+        </button>
     </div>
-</div>
-<div class="container">
-        <div class="row" id="box-search">
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="j">
-                <img src="images/jon-snow.jpeg" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>J</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="k">
-                <img src="images/khal_drogo.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>K</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="l">
-                <img src="images/littlefinger.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>L</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="m">
-                <img src="images/missandei.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>M</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="n">
-                <img src="images/nymeria.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>N</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="o">
-                <img src="images/Oberyn_Martell.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>O</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="p">
-                <img src="images/poddrick.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>P</p></div>
-            </div>
-            <div class="thumbnail text-center letter" data-letter="q">
-                <img src="images/Qyburn.png" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>Q</p></div>
-            </div>
-        
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="r">
-                <img src="images/robb stark.jpg" alt="" class="img-responsive letter" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>R</p></div>
-            </div>
-        </div>
+    <div class="mid-row">
+        <button id="J" class="button img imgj">
+            <p>J</p>
+        </button>
+        <button id="k" class="button img imgk">
+            <p>K</p>
+        </button>
+        <button id="l" class="button img imgl">
+            <p>L</p>
+        </button>
+        <button id="m" class="button img imgm">
+            <p>M</p>
+        </button>
+        <button id="n" class="button img imgn">
+            <p>N</p>
+        </button>
+        <button id="o" class="button img imgo">
+            <p>O</p>
+        </button>
+        <button id="p" class="button img imgp">
+            <p>P</p>
+        </button>
+        <button id="q" class="button img imgq">
+            <p>Q</p>
+        </button>
     </div>
-<div class="container">
-        <div class="row" id="box-search">
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="s">
-                <img src="images/sansa_stark.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>S</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="t">
-                <img src="images/tyrian_lannister.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>T</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="u">
-                <img src="images/unella.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>U</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="v">
-                <img src="images/varys.jpeg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>V</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="w">
-                <img src="images/wun wun.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>W</p></div>
-            </div>
-        <!-- </div> -->
-        <!-- <div class="row" id="box-search"> -->
-            <div class="thumbnail text-center letter" data-letter="x">
-                <img src="images/XaroXhoanDaxos.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>X</p></div>
-            </div>
-            <div class="thumbnail text-center letter" data-letter="y">
-                <img src="images/ygritte.jpg" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>Y</p></div>
-            </div>
-            <div class="thumbnail text-center letter" data-letter="z">
-                <img src="images/viseron.png" alt="" class="img-responsive" style="width: 8rem; height: 8rem;">
-                <div class="caption"><p>Z</p></div>
-            </div>
-        </div>
+    <div class="bottom-row">
+        <button id="r" class="button img imgr">
+            <p>R</p>
+        </button>
+        <button id="s" class="button img imgs">
+            <p>S</p>
+        </button>
+        <button id="t" class="button img imgt">
+            <p>T</p>
+        </button>
+        <button id="u" class="button img imgu">
+            <p>U</p>
+        </button>
+        <button id="v" class="button img imgv">
+            <p>V</p>
+        </button>
+        <button id="w" class="button img imgw">
+            <p>W</p>
+        </button>
+        <button id="x" class="button img imgx">
+            <p>X</p>
+        </button>
+        <button id="y" class="button img imgy">
+            <p>Y</p>
+        </button>
+        <button id="z" class="button img imgz">
+            <p>Z</p>
+        </button>
     </div>
-
-
-    <!-- <div class="row top-row">
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-    -->
-        <!-- <div class="letter" data-letter="a">a</div>
-        <div class="letter" data-letter="b">b</div>
-        <div class="letter" data-letter="c">c</div>
-        <div class="letter" data-letter="d">d</div>
-        <div class="letter" data-letter="e">e</div>
-        <div class="letter" data-letter="f">f</div>
-        <div class="letter" data-letter="g">g</div>
-        <div class="letter" data-letter="h">h</div>
-        <div class="letter" data-letter="i">i</div> -->
-    <!-- </div> -->
-
-    <!-- <div class="row top-row">  
-        <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="card" style="width: 8rem;">
-                <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-            </div>
-         <div class="letter" data-letter="j">j</div>
-        <div class="letter" data-letter="k">k</div>
-        <div class="letter" data-letter="l">l</div>
-        <div class="letter" data-letter="m">m</div>
-        <div class="letter" data-letter="n">n</div>
-        <div class="letter" data-letter="o">o</div>
-        <div class="letter" data-letter="p">p</div>
-        <div class="letter" data-letter="q">q</div> -->
-    <!-- </div> 
-
-    <div class="row bottom-row">  
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div>
-        <div class="card" style="width: 8rem;">
-            <img src="images/arya_stark.jpg" class="card-img-top" alt="...">
-        </div> -->
-        <!-- <div class="letter" data-letter="r">r</div>
-        <div class="letter" data-letter="s">s</div>
-        <div class="letter" data-letter="t">t</div>
-        <div class="letter" data-letter="u">u</div>
-        <div class="letter" data-letter="v">v</div>
-        <div class="letter" data-letter="w">w</div>
-        <div class="letter" data-letter="x">x</div>
-        <div class="letter" data-letter="y">y</div>
-        <div class="letter" data-letter="z">z</div> -->
-    <!-- </div> 
-    -->
-   
-
- 
-
-
- 
-
-
+    
     <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
 </body>
 </html>
