@@ -16,5 +16,9 @@ h2 {
     border: 1px white solid;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+}
 
 
