@@ -1,0 +1,20 @@
+body {
+    background: url('https://images.alphacoders.com/307/thumb-1920-307471.jpg');
+    background-size: cover;
+}
+
+h1 {
+    color: #fff;
+    font-family: 'Uncial Antiqua';
+    text-align: center;
+    padding: 10px;
+}
+
+h2 {
+    color: white;
+    height: 50vh;
+    border: 1px white solid;
+}
+
+
+
