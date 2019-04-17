@@ -47,15 +47,22 @@ div.letter {
     font-size: 24px;
 }
 
-.top-row, .mid-row, .bottom-row {
+/* .top-row, .mid-row, .bottom-row {
     display: flex;
     justify-content: center;
+} */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .button {
     width: 100px; /* 75px;  */
     height: 100px; /* 75px;  */
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(255,255,255,0.2), 0 6px 10px 0 rgba(255,255,255,0.19);
+    color: rgba(255,255,255, 0.4); /* rgba(255,255,255, 0.7); */
+    font-size: 46px;  /* 24px  */
 }
 
 .img {
@@ -159,10 +166,10 @@ div.letter {
     background-image: url(images/dragon.webp);
 }
 
-p {
+/* p {
     color: rgba(255,255,255, 0.9); /* rgba(255,255,255, 0.7); */
     font-size: 46px;  /* 24px  */
-}
+} */
 
 /* .container {
     display: flex;
