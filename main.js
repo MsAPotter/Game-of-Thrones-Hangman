@@ -23,21 +23,27 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
         divForLetter.className = "letter";
         document.querySelector('#phrase').appendChild(divForLetter)
 
+    let placeholderForLetter = document.createElement('span')
+        placeholderForLetter.className = "hide-me";             // hides letters
+        divForLetter.appendChild(placeholderForLetter)
+
     let letters = document.createTextNode(lettersOfEachPhrase[i])
         console.log(letters)
-        divForLetter.appendChild(letters)
+        placeholderForLetter.appendChild(letters)
         console.log(divForLetter)
-
-    // document.querySelectorAll("[data-letter]")[i]
-    // document.querySelectorAll("[data-letter]")[0].id.style.visibility = "hidden";
 
     let lineAsLetterPlaceholder = document.createElement('hr')
         lineAsLetterPlaceholder.className = "line"
         divForLetter.appendChild(lineAsLetterPlaceholder)
 
+        if (letters = " ") {
+            lineAsLetterPlaceholder.classList.remove("line");
+        }
+
+    // document.querySelectorAll("[data-letter]")[i]
+    // document.querySelectorAll("[data-letter]")[0].id.style.visibility = "hidden";
       
 }
-
 }
 gameBoard()
 

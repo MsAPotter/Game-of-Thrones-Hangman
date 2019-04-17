@@ -46,6 +46,12 @@ div.letter {
     color: #fff;
     font-size: 24px;
 }
+.hide-me {
+    visibility: hidden;
+}
+.line {
+    width: 25px;
+}
 .hide {
     visibility: hidden;
 }
