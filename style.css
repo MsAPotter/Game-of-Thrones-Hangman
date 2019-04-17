@@ -31,9 +31,21 @@ h1, h2 {
     border: 1px solid white;
 }
 
-#phrase {
+/* #phrase {
     display: flex;
     justify-content: center;
+} */
+#phrase {
+    border: 5px solid red;
+    display: flex;
+    justify-content: center;
+}
+div.letter {
+    margin: 10px;
+}
+.letter {
+    color: #fff;
+    font-size: 24px;
 }
 
 .top-row, .mid-row, .bottom-row {
@@ -41,15 +53,15 @@ h1, h2 {
     justify-content: center;
 }
 .button {
-    width: 100px;
-    height: 100px;
+    width: 100px; /* 75px;  */
+    height: 100px; /* 75px;  */
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(255,255,255,0.2), 0 6px 10px 0 rgba(255,255,255,0.19);
 }
 
 .img {
-    width: 100px;
-    height: 100px;
+    width: 100px;  /* 75px;  */
+    height: 100px;  /* 75px;  */
     margin: 5px;
     display: flex;
     align-items: center; /*vertically centers child element, p */
@@ -149,8 +161,8 @@ h1, h2 {
 }
 
 p {
-    color: rgba(255,255,255, 0.9);
-    font-size: 48px;
+    color: rgba(255,255,255, 0.9); /* rgba(255,255,255, 0.7); */
+    font-size: 46px;  /* 24px  */
 }
 
 /* .container {
