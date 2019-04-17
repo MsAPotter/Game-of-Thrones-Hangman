@@ -3,9 +3,9 @@ arrayofPhrases = ["winter is coming", "valar morghulis"];
     console.log(arrayofPhrases)
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
-phrases = arrayofPhrases[0].split("");                   
-    console.log(phrases);
-    console.log(phrases[0][0]);
+lettersOfEachPhrase = arrayofPhrases[1].split("");                   
+    console.log(lettersOfEachPhrase);
+    console.log(lettersOfEachPhrase[0][0]);
 
 
 wordToGuess = document.querySelector('#phrase');
@@ -15,12 +15,12 @@ wordToGuess = document.querySelector('#phrase');
 // Adds a class to div in order to style as desired
 // Adds letters of the phrase to the divs
 // Also creates underlines (hr) under each div element (would not append to letters)
-for (var i =0; i < phrases.length; i++) {         
+for (var i =0; i < lettersOfEachPhrase.length; i++) {         
     let divForLetter = document.createElement('div')
         divForLetter.className = "letter";
         document.querySelector('#phrase').appendChild(divForLetter)
 
-    let letters = document.createTextNode(phrases[i])
+    let letters = document.createTextNode(lettersOfEachPhrase[i])
         console.log(letters)
         divForLetter.appendChild(letters)
         console.log(divForLetter)
@@ -35,18 +35,44 @@ for (var i =0; i < phrases.length; i++) {
 
 // Reference: https://stackoverflow.com/questions/40956717/how-to-addeventlistener-to-multiple-elements-in-a-single-line
 
+// selectAllLetters.forEach(function(userClicksOnLetter) {
+//     userClicksOnLetter.addEventListener("click", function(event) {
+//         console.log("test");
+//         //this function does stuff
+//     });
+// });
 // ==> ARE WE NOT ABLE TO LISTEN ON MULTIPLE LEMENTS AT ONCE?? (ie could not get the quearySelectorAll to work with a click function, until I added a forEach function)
 
-let selectAllLetters = document.querySelectorAll('.button')
-console.log(selectAllLetters)
+let selectAllLetterA = document.querySelector('.button')
+console.log(selectAllLetterA)
 
 
-selectAllLetters.forEach(function(userClicksOnLetter) {
-    userClicksOnLetter.addEventListener("click", function() {
-        console.log("test");
-        //this function does stuff
-    });
-});
+userGuess = 0;
+selectAllLetterA.addEventListener('click', function() {
+    while (userGuess < 5) {
+        for (var i =0; i < lettersOfEachPhrase.length; i++) { 
+            if (selectAllLetterA.id == lettersOfEachPhrase[i]) {
+                console.log("yes")
+                userGuess = userGuess + 1;
+            }   else {
+                userGuess = userGuess + 1;
+                console.log("oops")
+            }
+        }
+    }});
+
+
+
+
+// userGuess = 0;
+// while (userGuess < 5) {
+//     for (var i =0; i < lettersOfEachPhrase.length; i++) { 
+//         if (event.key == document.querySelectorAll(`[id=${lettersOfEachPhrase[i]}]`)[0].id) {
+//             lettersOfEachPhrase.style.visiblity = hidden;
+//         }
+
+// }
+// }
 
 
 // On start, shuffle array of phrases

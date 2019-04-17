@@ -36,7 +36,6 @@ h1, h2 {
     justify-content: center;
 } */
 #phrase {
-    border: 5px solid red;
     display: flex;
     justify-content: center;
 }
