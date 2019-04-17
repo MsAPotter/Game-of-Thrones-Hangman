@@ -11,7 +11,7 @@ lettersOfEachPhrase = arrayofPhrases[1].split("");
 
 
 wordToGuess = document.querySelector('#phrase');
-    console.log(wordToGuess);
+    // console.log(wordToGuess);
 
 // Loops through a phrase and creates as many divs as there are letters in the phrase
 // Adds a class to div in order to style as desired
@@ -24,9 +24,9 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
         document.querySelector('#phrase').appendChild(divForLetter)
 
     let letters = document.createTextNode(lettersOfEachPhrase[i])
-        // console.log(letters)
+        console.log(letters)
         divForLetter.appendChild(letters)
-        // console.log(divForLetter)
+        console.log(divForLetter)
 
     // document.querySelectorAll("[data-letter]")[i]
     // document.querySelectorAll("[data-letter]")[0].id.style.visibility = "hidden";
@@ -37,7 +37,6 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 
       
 }
-// div.letter.style.visibility = "hidden";  
 
 }
 gameBoard()
@@ -79,6 +78,7 @@ allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log("boom");
     console.log(evt.target.id)
+    console.log(evt.target)
 
     for (var i =0; i < lettersOfEachPhrase.length; i++) { 
         if (evt.target.id == lettersOfEachPhrase[i]) {  //check
@@ -93,10 +93,13 @@ allButtons.addEventListener('click', function(evt) {
             // allButtons[j].style.backgroundColor = "#f5f5f5";    // adds visual gray background for users to know disabled
 
             userGuess = userGuess + 1;
-        }   else {
+        }   else if (evt.target.id !== lettersOfEachPhrase[i]){
             // Add hangman figure
             userGuess = userGuess + 1;
             console.log("oops")
+            event.target.disabled = true;
+            event.target.style.visibility = "hidden";
+
         }
     }
 
