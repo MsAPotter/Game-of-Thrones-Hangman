@@ -1,4 +1,4 @@
-function gameBoard() {
+// function gameBoard() {
 
 // Array of phrases chosen by creator
 arrayofPhrases = ["winter is coming", "valar morghulis"];      
@@ -7,8 +7,6 @@ arrayofPhrases = ["winter is coming", "valar morghulis"];
 // Splits each phrase (index) into separate string letters (to be looped thru later)
 lettersOfEachPhrase = arrayofPhrases[1].split("");                   
     console.log(lettersOfEachPhrase);
-    console.log(lettersOfEachPhrase[0][0]);
-
 
 wordToGuess = document.querySelector('#phrase');
     // console.log(wordToGuess);
@@ -17,55 +15,43 @@ wordToGuess = document.querySelector('#phrase');
 // Adds a class to div in order to style as desired
 // Adds letters of the phrase to the divs
 // Also creates underlines (hr) under each div element (would not append to letters)
+placeholderForLetter = [];
 for (var i =0; i < lettersOfEachPhrase.length; i++) {       
 
     let divForLetter = document.createElement('div')
         divForLetter.className = "letter";
         document.querySelector('#phrase').appendChild(divForLetter)
 
-    let placeholderForLetter = document.createElement('span')
+    placeholderForLetter = document.createElement('span')       // NEEDED TO ADD A SPAN IOT HIDE LETTERS ==> IDEA FROM DANNY
         placeholderForLetter.className = "hide-me";             // hides letters
         divForLetter.appendChild(placeholderForLetter)
+        console.log(placeholderForLetter)
 
-    let letters = document.createTextNode(lettersOfEachPhrase[i])
-        console.log(letters)
-        placeholderForLetter.appendChild(letters)
+    letter = document.createTextNode(lettersOfEachPhrase[i])
+        console.log(letter)
+        placeholderForLetter.appendChild(letter)
         console.log(divForLetter)
 
-    let lineAsLetterPlaceholder = document.createElement('hr')
-        lineAsLetterPlaceholder.className = "line"
+    let lineAsLetterPlaceholder = document.createElement('hr')      // NEEDED TO APPEND HR TO DIV (REMOVE FROM SAME ELEMENT AS LETTER) IOT HIDE LETTERS
+        lineAsLetterPlaceholder.className = "line";
         divForLetter.appendChild(lineAsLetterPlaceholder)
 
-        if (letters = " ") {
-            lineAsLetterPlaceholder.classList.remove("line");
-        }
+        
 
-    // document.querySelectorAll("[data-letter]")[i]
-    // document.querySelectorAll("[data-letter]")[0].id.style.visibility = "hidden";
-      
 }
-}
-gameBoard()
+ 
+// gameBoard()
 
 
 //  Adding event listener to listen for click on buttons
 
-// Reference: https://stackoverflow.com/questions/40956717/how-to-addeventlistener-to-multiple-elements-in-a-single-line
-// selectAllLetters.forEach(function(userClicksOnLetter) {
-//     userClicksOnLetter.addEventListener("click", function(event) {
-//         console.log("test");
-//         //this function does stuff
-//     });
-// });
-//
 // ==> ARE WE NOT ABLE TO LISTEN ON MULTIPLE LEMENTS AT ONCE?? (ie could not get the quearySelectorAll to work with a click function, until I added a forEach function)
-
 
 // 1. Loop through all buttons, listening for a click
 // 2. If a button is clicked, check if the button letter (ie "a") equals any letter in the phrase
 // 3. If yes, (1) unhide the letter 
 //              (2) Disable button from future clicks
-//              (3) increase userGuess count
+//            X (3) increase userGuess count
 // 4. If no, (1) popup to let used know choice was incorrect
 //              (2) Add hangman figure
 //              (3) Disable button from future clicks 
@@ -82,34 +68,25 @@ console.log(allButtons)
 
 allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
-    console.log("boom");
     console.log(evt.target.id)
     console.log(evt.target)
 
     for (var i =0; i < lettersOfEachPhrase.length; i++) { 
         if (evt.target.id == lettersOfEachPhrase[i]) {  //check
             console.log("yes")
-            // evt.target.id.style.visibility = "hidden";
-            // console.log(lettersOfEachPhrase[i])             // check
-            // // lettersOfEachPhrase[i].style.visibility = "hidden";
-            // // console.log(letters[i])                     // check
-            // evt.target.id.style.visibility = "hidden";
+            document.getElementsByTagName('span')[i].removeAttribute("class");
 
-            // allButtons[j].disabled = true;                      // disables clicked button
-            // allButtons[j].style.backgroundColor = "#f5f5f5";    // adds visual gray background for users to know disabled
-
-            userGuess = userGuess + 1;
         }   else if (evt.target.id !== lettersOfEachPhrase[i]){
             // Add hangman figure
             userGuess = userGuess + 1;
             console.log("oops")
             event.target.disabled = true;
             event.target.style.visibility = "hidden";
-
         }
     }
 
-})
+}
+)
 // while (userGuess <= 5) {
     // function playGame() {
 

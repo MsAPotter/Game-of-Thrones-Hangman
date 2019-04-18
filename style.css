@@ -45,12 +45,13 @@ div.letter {
 .letter {
     color: #fff;
     font-size: 24px;
+    text-align: center;
 }
 .hide-me {
     visibility: hidden;
 }
 .line {
-    width: 25px;
+    width: 20px;
 }
 .hide {
     visibility: hidden;
