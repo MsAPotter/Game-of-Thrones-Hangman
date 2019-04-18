@@ -1,4 +1,4 @@
- // ARRAY OF PHRASES CHOSEN BY CREATOR
+// ARRAY OF PHRASES CHOSEN BY CREATOR
 arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing, jon snow", "chaos is a ladder", "hold the door"];      
 console.log(arrayofPhrases)
  
@@ -37,16 +37,13 @@ NoTwoWordsTheSame()
 console.log(randomPhrase)
 
 
-                                                                                // function gameBoard() {
-
 //  MAKE PHRASE INTO INDIVIDUAL LETTERS TO BE ABLE TO LOOP THROUGH
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
 lettersOfEachPhrase = randomPhrase.split("");                   
     console.log(lettersOfEachPhrase);
 
-                                                                                // wordToGuess = document.querySelector('#phrase');
-                                                                                    // console.log(wordToGuess);
+                                                                            
 
 // ADD IMAGE UNDER HEADER
 
@@ -66,7 +63,6 @@ let imageTagForImage = document.createElement('img');
 placeholder.appendChild(imageTagForImage);
 console.log(imageTagForImage)
 imageTagForImage.setAttribute("src", arrayOfImages[0]);
-// imageTagForImage.setAttribute("opacity", 0.);
 
 
 //  CREATE DIVS TO DISPLAY THE PHRASE ON THE GAMEBOARD
@@ -113,14 +109,11 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 //              (2) Disable button from future clicks
 //            X (3) increase userGuess count
 // 4. If no, (1) popup to let used know choice was incorrect
-//              (2) Add hangman figure
-//              (3) Disable button from future clicks 
+//              (2) Disable button from future clicks  
+//              (3) Add "hangman figure"
+//  REFERENCE: https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css           
 //              (4) increase userGuess count
 
-
-// let startButton = document.getElementById('play-game');
-// startButton.addEventListener('click', function playGame(){
-// function playGame() {
 
 userGuess = 0;
 op = 0.1;
@@ -128,10 +121,13 @@ op = 0.1;
 let allButtons = document.querySelector('.container')
 console.log(allButtons)
 
+
 allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
     console.log(evt.target)
+
+// while (userGuess <= ) {
 
     for (var i =0; i < lettersOfEachPhrase.length; i++) { 
         if (evt.target.id == lettersOfEachPhrase[i]) {  //check
@@ -148,16 +144,27 @@ allButtons.addEventListener('click', function(evt) {
             // increase opacity to show increased wrong guesses
             imageTagForImage.style.opacity = op;
             imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
-            op += op * 0.01;
+            op += op * 0.02;
             console.log(op)
 
             userGuess = userGuess + 1;
+            console.log(userGuess)
 
         }
     }
 
+// }
+
+})
+
+if (userGuess > lettersOfEachPhrase.length*5) {
+    console.log("Game Over.")
+    // display Game Over
+    // play Video
+    // display button asking "Try again?"
+    // if button clicked, reset game (shuffle phrases array)
 }
-)
+
 // while (userGuess <= 5) {
     // function playGame() {
 
@@ -175,13 +182,7 @@ allButtons.addEventListener('click', function(evt) {
 // playGame()
 // }
 
-if (userGuess > 5) {
-    console.log("Game Over.")
-    // display Game Over
-    // play Video
-    // display button asking "Try again?"
-    // if button clicked, reset game (shuffle phrases array)
-}
+
 
 // }   // ends playGame 
 

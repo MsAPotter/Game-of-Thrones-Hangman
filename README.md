@@ -7,3 +7,7 @@ Hurdle #2: While I successfully was able to make a for loop that listened for th
 --> I had to make a container that surrounded all the buttons and listen for a click within that parent container div
 
 Hurdle #3: My loop that is supposed to SHOW the letter of the button clicked is not synced correctly. Syncing up my phrase array (that the computer knows to iterate thru) vs the divs, classes, and attributes I made in the DOM to generate the visual dashes that the user sees.
+
+References: 
+https://codepen.io/GeeksRock/pen/JoZEVb?editors=0010 (lines 10-15 , 25-33)
+https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css  (lines 144-146)
