@@ -1,8 +1,19 @@
+ // Array of phrases chosen by creator
+arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing, jon snow", "chaos is a ladder", "hold the door"];      
+console.log(arrayofPhrases)
+ 
+//  Randomize array of phrases at each start 
+function GetRandomPhrase() {
+        var j = Math.floor((Math.random() * 8));
+        randomPhrase = arrayofPhrases[j];
+        return randomPhrase;
+}
+GetRandomPhrase()
+console.log(randomPhrase)
+
 // function gameBoard() {
 
-// Array of phrases chosen by creator
-arrayofPhrases = ["winter is coming", "valar morghulis"];      
-    console.log(arrayofPhrases)
+
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
 lettersOfEachPhrase = arrayofPhrases[1].split("");                   
@@ -23,7 +34,7 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
         document.querySelector('#phrase').appendChild(divForLetter)
 
     placeholderForLetter = document.createElement('span')       // NEEDED TO ADD A SPAN IOT HIDE LETTERS ==> IDEA FROM DANNY
-        placeholderForLetter.className = "hide-me";             // hides letters
+        // placeholderForLetter.className = "hide-me";             // hides letters
         divForLetter.appendChild(placeholderForLetter)
         console.log(placeholderForLetter)
 

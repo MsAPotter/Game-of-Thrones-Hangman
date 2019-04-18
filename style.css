@@ -1,5 +1,6 @@
 body {
-    background: url('https://images.alphacoders.com/307/thumb-1920-307471.jpg');
+    /* background: url('https://images.alphacoders.com/307/thumb-1920-307471.jpg'); */
+    background: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/08/07/05/game-of-thrones-spoils.jpeg?w968');
     background-color: white;
     background-size: cover;
 }
@@ -13,7 +14,8 @@ body {
 
 h1, h2 {
     color: #fff;
-    font-family: 'Uncial Antiqua';
+    font-family: 'MedievalSharp', cursive;
+    /* font-family: 'Uncial Antiqua'; */
     text-align: center;
 }
 /* .reset {
