@@ -40,8 +40,14 @@ console.log(randomPhrase)
 //  MAKE PHRASE INTO INDIVIDUAL LETTERS TO BE ABLE TO LOOP THROUGH
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
-lettersOfEachPhrase = randomPhrase.split("");                   
+
+// lettersOfEachPhrase = randomPhrase.replace(/\s+/g, ''); 
+//     console.log(lettersOfEachPhrase);
+//     console.log(lettersOfEachPhrase.length);
+
+let lettersOfEachPhrase = randomPhrase.split(""); 
     console.log(lettersOfEachPhrase);
+    console.log(lettersOfEachPhrase.length)
 
                                                                             
 
@@ -61,8 +67,9 @@ let placeholder = document.getElementById('placeholder');
 console.log(placeholder)
 let imageTagForImage = document.createElement('img');
 placeholder.appendChild(imageTagForImage);
-console.log(imageTagForImage)
+// console.log(imageTagForImage)
 imageTagForImage.setAttribute("src", arrayOfImages[0]);
+
 
 
 //  CREATE DIVS TO DISPLAY THE PHRASE ON THE GAMEBOARD
@@ -76,7 +83,14 @@ imageTagForImage.setAttribute("src", arrayOfImages[0]);
 // Also creates underlines (hr) under each div element (--> would not append to letters)
 
 placeholderForLetter = [];
-for (var i =0; i < lettersOfEachPhrase.length; i++) {       
+let numOfCorrectGuesses = 0;
+
+for (var i =0; i < lettersOfEachPhrase.length; i++) {    
+    
+    if (lettersOfEachPhrase[i] == " ") {
+        numOfCorrectGuesses++;
+        console.log(numOfCorrectGuesses)
+    }
 
     let divForLetter = document.createElement('div')
         divForLetter.className = "letter";
@@ -115,7 +129,8 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 //              (4) increase userGuess count
 
 
-userGuess = 0;
+let userGuess = 0;
+// let numOfCorrectGuesses = 0;
 op = 0.1;
 
 let allButtons = document.querySelector('.container')
@@ -125,45 +140,67 @@ console.log(allButtons)
 allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
-    console.log(evt.target)
 
-// while (userGuess <= ) {
+        if (evt.target !== allButtons) {
 
-    for (var i =0; i < lettersOfEachPhrase.length; i++) { 
-        if (evt.target.id == lettersOfEachPhrase[i]) {  //check
-            console.log("yes")
-            document.getElementsByTagName('span')[i].removeAttribute("class");
-           
+            for (var i =0; i < lettersOfEachPhrase.length; i++) { 
 
-        }   else if (evt.target.id !== lettersOfEachPhrase[i]){
-            console.log("oops")  // loop check
-            // disable button & hide so player knows what letter they chose already
-            event.target.disabled = true;
-            event.target.style.visibility = "hidden";
+                if (evt.target.id == lettersOfEachPhrase[i]) {  
 
-            // increase opacity to show increased wrong guesses
-            imageTagForImage.style.opacity = op;
-            imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
-            op += op * 0.02;
-            console.log(op)
+                    document.getElementsByTagName('span')[i].removeAttribute("class");
 
-            userGuess = userGuess + 1;
-            console.log(userGuess)
+                    event.target.disabled = true;
+                    event.target.style.opacity = 0.3;
 
-        }
-    }
+                    numOfCorrectGuesses++;
+                    console.log(numOfCorrectGuesses);
+
+                        if (numOfCorrectGuesses === lettersOfEachPhrase.length) {
+                            console.log("win");
+                        }
+                
+
+                }   else if (evt.target.id !== lettersOfEachPhrase[i]){
+
+                        if (userGuess < 5) {
+
+                            event.target.disabled = true;
+                            event.target.style.opacity = 0.3;       // --> chose to change opacity rather than hide
+                                                                    // event.target.style.visibility = "hidden";
+
+                            imageTagForImage.style.opacity = op;    // increase opacity to show increased wrong guesses
+                            imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
+                            op += op * 0.025;
+                            userGuess++;
+                            // console.log(userGuess)
+                        }
+
+                        if (userGuess === 6) {
+                            console.log("Game over");
+                        }
+
+                     } // else {
+                    //     if (numOfCorrectGuesses === lettersOfEachPhrase.length - 1) {
+                    //         console.log("win");
+                    //     }
+                    // }
+                    
+
+                
+            }
+}
 
 // }
 
 })
 
-if (userGuess > lettersOfEachPhrase.length*5) {
-    console.log("Game Over.")
-    // display Game Over
-    // play Video
-    // display button asking "Try again?"
-    // if button clicked, reset game (shuffle phrases array)
-}
+// if (userGuess = 0) {
+//     console.log("Game Over.")
+//     // display Game Over
+//     // play Video
+//     // display button asking "Try again?"
+//     // if button clicked, reset game (shuffle phrases array)
+// }
 
 // while (userGuess <= 5) {
     // function playGame() {
