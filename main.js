@@ -1,31 +1,84 @@
- // Array of phrases chosen by creator
+ // ARRAY OF PHRASES CHOSEN BY CREATOR
 arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing, jon snow", "chaos is a ladder", "hold the door"];      
 console.log(arrayofPhrases)
  
-//  Randomize array of phrases at each start 
+
+//  RANDOMIZE ARRAY OF PHRASES AT EACH START 
+//  Reference: https://codepen.io/GeeksRock/pen/JoZEVb?editors=0010
+//  Reference:  Game of War Lab
+
 function GetRandomPhrase() {
-        var j = Math.floor((Math.random() * 8));
+        var j = Math.floor((Math.random() * 7));
         randomPhrase = arrayofPhrases[j];
         return randomPhrase;
 }
 GetRandomPhrase()
 console.log(randomPhrase)
 
-// function gameBoard() {
+
+// NEVER USE THE SAME RANDOM PHRASE TWO TIMES IN A ROW 
+//  Reference: https://codepen.io/GeeksRock/pen/JoZEVb?editors=0010
+
+var lastUsedPhrase;
+
+function NoTwoWordsTheSame() {
+	randomPhrase = GetRandomPhrase();
+ //never use the same random word two times in a row
+ if (randomPhrase[0] === lastUsedPhrase) {
+    //request a new random word
+    NoTwoWordsTheSame();
+  } else {
+    //track the last random word used
+    lastUsedPhrase = randomPhrase[0];
+    return lastUsedPhrase
+  }
+}
+NoTwoWordsTheSame()
+console.log(randomPhrase)
 
 
+                                                                                // function gameBoard() {
+
+//  MAKE PHRASE INTO INDIVIDUAL LETTERS TO BE ABLE TO LOOP THROUGH
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
-lettersOfEachPhrase = arrayofPhrases[1].split("");                   
+lettersOfEachPhrase = randomPhrase.split("");                   
     console.log(lettersOfEachPhrase);
 
-wordToGuess = document.querySelector('#phrase');
-    // console.log(wordToGuess);
+                                                                                // wordToGuess = document.querySelector('#phrase');
+                                                                                    // console.log(wordToGuess);
+
+// ADD IMAGE UNDER HEADER
+
+arrayOfImages = ['https://awoiaf.westeros.org/thumb.php?f=HBOGolden_Crown.png&width=350', 'https://www.telegraph.co.uk/content/dam/tv/2017/07/31/ouch-0_trans_NvBQzQNjv4BqQ99bcywK3ovn70OLmYu7RvcGjdxbBaRy7TzoQO1nXvA.jpg?imwidth=450']
+
+// function GetRandomImage() {
+//     var j = Math.floor((Math.random() * 2));
+//     randomImage = arrayofImages[j];
+//     // return randomImage;
+// }
+// GetRandomImage()
+
+
+let placeholder = document.getElementById('placeholder');
+console.log(placeholder)
+let imageTagForImage = document.createElement('img');
+placeholder.appendChild(imageTagForImage);
+console.log(imageTagForImage)
+imageTagForImage.setAttribute("src", arrayOfImages[0]);
+// imageTagForImage.setAttribute("opacity", 0.);
+
+
+//  CREATE DIVS TO DISPLAY THE PHRASE ON THE GAMEBOARD
+//  Reference: Danny (for the idea to create a span tag to be able to hide the letter and not the hr)
 
 // Loops through a phrase and creates as many divs as there are letters in the phrase
-// Adds a class to div in order to style as desired
-// Adds letters of the phrase to the divs
-// Also creates underlines (hr) under each div element (would not append to letters)
+// Adds a class to div 
+// Adds a span to the div
+// Adds a class to the span in order to set hide attributes in CSS
+// Adds letters of the phrase to the span within the divs
+// Also creates underlines (hr) under each div element (--> would not append to letters)
+
 placeholderForLetter = [];
 for (var i =0; i < lettersOfEachPhrase.length; i++) {       
 
@@ -36,22 +89,18 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
     placeholderForLetter = document.createElement('span')       // NEEDED TO ADD A SPAN IOT HIDE LETTERS ==> IDEA FROM DANNY
         // placeholderForLetter.className = "hide-me";             // hides letters
         divForLetter.appendChild(placeholderForLetter)
-        console.log(placeholderForLetter)
+        // console.log(placeholderForLetter)
 
     letter = document.createTextNode(lettersOfEachPhrase[i])
-        console.log(letter)
+        // console.log(letter)
         placeholderForLetter.appendChild(letter)
-        console.log(divForLetter)
+        // console.log(divForLetter)
 
     let lineAsLetterPlaceholder = document.createElement('hr')      // NEEDED TO APPEND HR TO DIV (REMOVE FROM SAME ELEMENT AS LETTER) IOT HIDE LETTERS
         lineAsLetterPlaceholder.className = "line";
         divForLetter.appendChild(lineAsLetterPlaceholder)
-
-        
-
 }
  
-// gameBoard()
 
 
 //  Adding event listener to listen for click on buttons
@@ -74,6 +123,8 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 // function playGame() {
 
 userGuess = 0;
+op = 0.1;
+
 let allButtons = document.querySelector('.container')
 console.log(allButtons)
 
@@ -86,13 +137,22 @@ allButtons.addEventListener('click', function(evt) {
         if (evt.target.id == lettersOfEachPhrase[i]) {  //check
             console.log("yes")
             document.getElementsByTagName('span')[i].removeAttribute("class");
+           
 
         }   else if (evt.target.id !== lettersOfEachPhrase[i]){
-            // Add hangman figure
-            userGuess = userGuess + 1;
-            console.log("oops")
+            console.log("oops")  // loop check
+            // disable button & hide so player knows what letter they chose already
             event.target.disabled = true;
             event.target.style.visibility = "hidden";
+
+            // increase opacity to show increased wrong guesses
+            imageTagForImage.style.opacity = op;
+            imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
+            op += op * 0.01;
+            console.log(op)
+
+            userGuess = userGuess + 1;
+
         }
     }
 
