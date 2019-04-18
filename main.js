@@ -143,7 +143,7 @@ function playGame() {
     evt.preventDefault();
     console.log(evt.target.id)
 
-        if (evt.target !== allButtons) {
+        if (evt.target !== allButtons) {        //  ignores clicking on container of buttons
 
             for (var i =0; i < lettersOfEachPhrase.length; i++) { 
 
@@ -169,16 +169,13 @@ function playGame() {
 
                         if (numOfWrongGuesses <= 7) {
                             event.target.disabled = true;
-                            event.target.style.opacity = 0.3;       // --> chose to change opacity rather than hide
-                                                                    // event.target.style.visibility = "hidden";
+                            event.target.style.opacity = 0.3;       
 
-                            imageTagForImage.style.opacity = op;    // increase opacity to show increased wrong guesses
+                            imageTagForImage.style.opacity = op;    
                             imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
                             op += op * 0.025;
-                            numOfWrongGuesses--;
-                            console.log(numOfWrongGuesses)
                         }
-                        if (numOfWrongGuesses > 7) {
+                        if (numOfWrongGuesses == 1) {
                             console.log("Game over");
                             //     // display Game Over
                             //     // play Video
@@ -189,19 +186,12 @@ function playGame() {
   
                         }
 
-            }
-                      // else {
-                    //     if (numOfCorrectGuesses === lettersOfEachPhrase.length - 1) {
-                    //         console.log("win");
-                    //     }
-                    // }
-                    
+            } 
 
+            numOfWrongGuesses--;
+            console.log(numOfWrongGuesses)
                 
         }
-// }
-
-// }
 
 })
 }
