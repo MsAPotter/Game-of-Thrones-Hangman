@@ -98,7 +98,7 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
         document.querySelector('#phrase').appendChild(divForLetter)
 
     placeholderForLetter = document.createElement('span')       // NEEDED TO ADD A SPAN IOT HIDE LETTERS ==> IDEA FROM DANNY
-        // placeholderForLetter.className = "hide-me";             // hides letters
+        placeholderForLetter.className = "hide-me";             // hides letters
         divForLetter.appendChild(placeholderForLetter)
         // console.log(placeholderForLetter)
 
@@ -138,7 +138,6 @@ console.log(allButtons)
 
 
 function playGame() {
-
     allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
@@ -163,44 +162,53 @@ function playGame() {
                         }
                 
 
-                }   else {
+                } 
+                // else if (evt.target.id !== lettersOfEachPhrase[i])  {
+
+                //         if (numOfWrongGuesses <= 7) {
+                //             event.target.disabled = true;
+                //             event.target.style.opacity = 0.3;       
+
+                //             imageTagForImage.style.opacity = op;    
+                //             // imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
+                //             op += op * 0.025;
+                //         }
+                //         if (numOfWrongGuesses == 1) {
+                //             console.log("Game over");
+                //             //     // display Game Over
+                //             //     // play Video
+                //             //     // display button asking "Try again?"
+                //             //     // if button clicked, reset game (shuffle phrases array)
+                //         }   
+                //     }  
                     
-                    if (evt.target.id !== lettersOfEachPhrase[i]) {
-
-                        if (numOfWrongGuesses <= 7) {
-                            event.target.disabled = true;
-                            event.target.style.opacity = 0.3;       
-
-                            imageTagForImage.style.opacity = op;    
-                            imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
-                            op += op * 0.025;
-                        }
-                        if (numOfWrongGuesses == 1) {
-                            console.log("Game over");
-                            //     // display Game Over
-                            //     // play Video
-                            //     // display button asking "Try again?"
-                            //     // if button clicked, reset game (shuffle phrases array)
-                        }
-                    }
-  
-                        }
-
-            } 
-
-            numOfWrongGuesses--;
-            console.log(numOfWrongGuesses)
+                }   
                 
+            }
+            // numOfWrongGuesses--;
+            // console.log(numOfWrongGuesses)
+                          
+  
+                        
+                        
+                              
+            })
         }
+             
+             
 
-})
-}
+            
+                
+        
+
 playGame()
 
 function win() {
+    
     imageTagForImage.removeAttribute("src");
     imageTagForImage.setAttribute("src", 'images/joffrey\ clap.gif');
     imageTagForImage.style.opacity = 1;
+    alert("Congratulations. You win!")
 
     // let restartButton = document.createElement('button')
     // restartButton.className = "restart";
@@ -218,62 +226,4 @@ function win() {
 //     // play Video
 //     // display button asking "Try again?"
 //     // if button clicked, reset game (shuffle phrases array)
-// }
-
-// while (userGuess <= 5) {
-    // function playGame() {
-
-// for (var j =0; j < allButtons.length; j++) {
-//     // allButtons[j].addEventListener('click', function() {
-//         // event.preventDefault();
-//         console.log(allButtons[j])
-//         console.log(allButtons[j].id)
-        
-            
-        // }
-    
-    // }
-// }
-// playGame()
-// }
-
-
-
-// }   // ends playGame 
-
-// })  // end of Start button click function
-// playGame()
-
-// userGuess = 0;
-// while (userGuess < 5) {
-//     for (var i =0; i < lettersOfEachPhrase.length; i++) { 
-//         if (event.key == document.querySelectorAll(`[id=${lettersOfEachPhrase[i]}]`)[0].id) {
-//             lettersOfEachPhrase.style.visiblity = hidden;
-//         }
-
-// }
-// }
-
-
-// On start, shuffle array of phrases
-// Hide phrase at START
-// visibility: hidden;
-
-
-// let userClicksOnLetter = selectAllLetters.addEventListener("click", function() {
-//     console.log("test");
-// });
-    // for (var i = 0; i < phrases.length; i++) {
-    //     if (selectAllLetters[0].dataset.letter  == answerPhrases[i]) {  // OR selectAllLetters.innerText
-    //         document.querySelectorAll(`[data-letter=${i}]`)[i].innerHTML = selectAllLetters[0].dataset.letter
-    // }
-    
-    // }
-  
-
-// for (let i = 0; i < phrases.length; i++) {
-//     phrases[i].addEventListener('click', function(evt) {    
-//       evt.preventDefault();
-
-// })
 // }
