@@ -1,5 +1,5 @@
 // ARRAY OF PHRASES CHOSEN BY CREATOR
-arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing, jon snow", "chaos is a ladder", "hold the door"];      
+arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing jon snow", "chaos is a ladder", "hold the door"];      
 console.log(arrayofPhrases)
  
 
@@ -66,6 +66,7 @@ arrayOfImages = ['https://awoiaf.westeros.org/thumb.php?f=HBOGolden_Crown.png&wi
 let placeholder = document.getElementById('placeholder');
 console.log(placeholder)
 let imageTagForImage = document.createElement('img');
+imageTagForImage.className = "hangman";
 placeholder.appendChild(imageTagForImage);
 // console.log(imageTagForImage)
 imageTagForImage.setAttribute("src", arrayOfImages[0]);
@@ -129,15 +130,16 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 //              (4) increase userGuess count
 
 
-let userGuess = 0;
-// let numOfCorrectGuesses = 0;
+let numOfWrongGuesses = 7;
 op = 0.1;
 
 let allButtons = document.querySelector('.container')
 console.log(allButtons)
 
 
-allButtons.addEventListener('click', function(evt) {
+function playGame() {
+
+    allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
 
@@ -157,13 +159,15 @@ allButtons.addEventListener('click', function(evt) {
 
                         if (numOfCorrectGuesses === lettersOfEachPhrase.length) {
                             console.log("win");
+                            win()
                         }
                 
 
-                }   else if (evt.target.id !== lettersOfEachPhrase[i]){
+                }   else {
+                    
+                    if (evt.target.id !== lettersOfEachPhrase[i]) {
 
-                        if (userGuess < 5) {
-
+                        if (numOfWrongGuesses <= 7) {
                             event.target.disabled = true;
                             event.target.style.opacity = 0.3;       // --> chose to change opacity rather than hide
                                                                     // event.target.style.visibility = "hidden";
@@ -171,15 +175,22 @@ allButtons.addEventListener('click', function(evt) {
                             imageTagForImage.style.opacity = op;    // increase opacity to show increased wrong guesses
                             imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
                             op += op * 0.025;
-                            userGuess++;
-                            // console.log(userGuess)
+                            numOfWrongGuesses--;
+                            console.log(numOfWrongGuesses)
                         }
-
-                        if (userGuess === 6) {
+                        if (numOfWrongGuesses > 7) {
                             console.log("Game over");
+                            //     // display Game Over
+                            //     // play Video
+                            //     // display button asking "Try again?"
+                            //     // if button clicked, reset game (shuffle phrases array)
+                        }
+                    }
+  
                         }
 
-                     } // else {
+            }
+                      // else {
                     //     if (numOfCorrectGuesses === lettersOfEachPhrase.length - 1) {
                     //         console.log("win");
                     //     }
@@ -187,12 +198,29 @@ allButtons.addEventListener('click', function(evt) {
                     
 
                 
-            }
-}
+        }
+// }
 
 // }
 
 })
+}
+playGame()
+
+function win() {
+    imageTagForImage.removeAttribute("src");
+    imageTagForImage.setAttribute("src", 'images/joffrey\ clap.gif');
+    imageTagForImage.style.opacity = 1;
+
+    // let restartButton = document.createElement('button')
+    // restartButton.className = "restart";
+    // document.querySelector('.hangman').appendChild(restartButton)
+
+    // let restartWords = document.createTextNode("Wanna play again?")
+    // restartButton.appendChild(restartWords)
+}
+
+
 
 // if (userGuess = 0) {
 //     console.log("Game Over.")

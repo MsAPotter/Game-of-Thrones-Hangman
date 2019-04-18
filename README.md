@@ -8,7 +8,7 @@ Hurdle #2: While I successfully was able to make a for loop that listened for th
 
 Hurdle #3: My loop that is supposed to SHOW the letter of the button clicked is not synced correctly. Syncing up my phrase array (that the computer knows to iterate thru) vs the divs, classes, and attributes I made in the DOM to generate the visual dashes that the user sees.
 
-Hurdle #4: When I was creating my win segment of code, I was comparing the number of 'correct user guesses' to the length of the phrase. However, the spaces between phrases counted towards the length of the phrase, so even though the user guessed all letters correctly, they could not win bc the spaces were not being acocunted for.
+Hurdle #4: When I was creating my win segment of code, I was comparing the number of 'correct user guesses' to the length of the phrase. However, the spaces between words counted towards the length of the phrase, so even though the user guessed all letters correctly, they could not win bc the spaces were not being acocunted for.
 Solution: I made an if statement, within the code where I built the divs holding the letters of the phrase, and said to increase the number of 'correct user guesses' each time it encountered a space " ".
 
 References: 
