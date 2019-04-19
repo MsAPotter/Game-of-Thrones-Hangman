@@ -35,6 +35,26 @@ h2 {
     box-shadow: 0 0 40px 40px rgb(37,60,71); /* https://stackoverflow.com/questions/24709915/blur-the-edges-of-an-image-or-background-image-with-css */
 }
 
+p {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'MedievalSharp', cursive;
+}
+.try-again {
+    font-size: 18px;
+    color: #fff;
+    background-color: rgb(37,60,71);
+}
+
+.restart {
+    margin: 15px;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'MedievalSharp', cursive;
+    background-color: rgb(37,60,71);
+    border-radius: 3px;
+}
 
 /**************** PHRASE FOR USER GUESS ****************/
 

@@ -1,5 +1,5 @@
 // ARRAY OF PHRASES CHOSEN BY CREATOR
-arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "I drink and I know things","you know nothing jon snow", "chaos is a ladder", "hold the door"];      
+arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "i drink and i know things","you know nothing jon snow", "chaos is a ladder", "hold the door"];      
 console.log(arrayofPhrases)
  
 
@@ -41,14 +41,9 @@ console.log(randomPhrase)
 
 // Splits each phrase (index) into separate string letters (to be looped thru later)
 
-// lettersOfEachPhrase = randomPhrase.replace(/\s+/g, ''); 
-//     console.log(lettersOfEachPhrase);
-//     console.log(lettersOfEachPhrase.length);
-
 let lettersOfEachPhrase = randomPhrase.split(""); 
-    console.log(lettersOfEachPhrase);
-    console.log(lettersOfEachPhrase.length)
-
+console.log(lettersOfEachPhrase);
+console.log(lettersOfEachPhrase.length)
                                                                             
 
 // ADD IMAGE UNDER HEADER
@@ -90,7 +85,7 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
     
     if (lettersOfEachPhrase[i] == " ") {
         numOfCorrectGuesses++;
-        console.log(numOfCorrectGuesses)
+        console.log("The number of correct guesses is:" +numOfCorrectGuesses)
     }
 
     let divForLetter = document.createElement('div')
@@ -123,9 +118,10 @@ for (var i =0; i < lettersOfEachPhrase.length; i++) {
 // 3. If yes, (1) unhide the letter 
 //              (2) Disable button from future clicks
 //            X (3) increase userGuess count
-// 4. If no, (1) popup to let used know choice was incorrect
+//              (4) if user guesses all letters correctly, they win!
+// 4. If no, (1) popup to let used know choice was incorrect and/or Add "hangman figure"
 //              (2) Disable button from future clicks  
-//              (3) Add "hangman figure"
+//              (3) If user guesses X many times, Game over
 //  REFERENCE: https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css           
 //              (4) increase userGuess count
 
@@ -138,11 +134,13 @@ console.log(allButtons)
 
 
 function playGame() {
+
     allButtons.addEventListener('click', function(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
+    if (evt.target !== allButtons) {        //  ignores clicking on container of buttons
 
-        if (evt.target !== allButtons) {        //  ignores clicking on container of buttons
+            
 
             for (var i =0; i < lettersOfEachPhrase.length; i++) { 
 
@@ -154,7 +152,7 @@ function playGame() {
                     event.target.style.opacity = 0.3;
 
                     numOfCorrectGuesses++;
-                    console.log(numOfCorrectGuesses);
+                    console.log("The new number of correct guesses is: "+numOfCorrectGuesses);
 
                         if (numOfCorrectGuesses === lettersOfEachPhrase.length) {
                             console.log("win");
@@ -162,68 +160,123 @@ function playGame() {
                         }
                 
 
-                } 
-                // else if (evt.target.id !== lettersOfEachPhrase[i])  {
-
-                //         if (numOfWrongGuesses <= 7) {
-                //             event.target.disabled = true;
-                //             event.target.style.opacity = 0.3;       
-
-                //             imageTagForImage.style.opacity = op;    
-                //             // imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
-                //             op += op * 0.025;
-                //         }
-                //         if (numOfWrongGuesses == 1) {
-                //             console.log("Game over");
-                //             //     // display Game Over
-                //             //     // play Video
-                //             //     // display button asking "Try again?"
-                //             //     // if button clicked, reset game (shuffle phrases array)
-                //         }   
-                //     }  
+                }   else {
                     
-                }   
-                
-            }
-            // numOfWrongGuesses--;
-            // console.log(numOfWrongGuesses)
-                          
+                    if (evt.target.id !== lettersOfEachPhrase[i]) {
+
+                        if (numOfWrongGuesses <= 7) {
+                            event.target.disabled = true;
+                            event.target.style.opacity = 0.3;       
+
+                            imageTagForImage.style.opacity = op;    
+                            imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
+                            op += op * 0.025;
+                        }
+                        if (numOfWrongGuesses == 1) {
+                            console.log("Game over");
+                            //     // display Game Over
+                            //     // play Video
+                            //     // display button asking "Try again?"
+                            //     // if button clicked, reset game (shuffle phrases array)
+                        }
+                    }
   
-                        
-                        
-                              
-            })
-        }
-             
-             
+                        }
 
-            
+            } 
+            numOfWrongGuesses--;
+            console.log("The number of wrong guesses is: "+numOfWrongGuesses)
+           
                 
-        
+        }
 
+})
+}
 playGame()
 
+     
+//  WIN FUNCTION ==> EXCHANGES IMAGE FOR GIF + TEXT + (NEED TO ADD 'BUTTON TO RESET GAME')
+
 function win() {
-    
     imageTagForImage.removeAttribute("src");
     imageTagForImage.setAttribute("src", 'images/joffrey\ clap.gif');
     imageTagForImage.style.opacity = 1;
-    alert("Congratulations. You win!")
+    imageTagForImage.style.minWidth = "500px";
+    letyouWin = document.createElement('p');
+    placeholder.appendChild(letyouWin)
+    addCongrats = document.createTextNode("Well, well well. Good job!");
+    letyouWin.appendChild(addCongrats);
 
-    // let restartButton = document.createElement('button')
-    // restartButton.className = "restart";
-    // document.querySelector('.hangman').appendChild(restartButton)
-
-    // let restartWords = document.createTextNode("Wanna play again?")
-    // restartButton.appendChild(restartWords)
+    let restartButton = document.createElement('button')
+    restartButton.className = "restart";
+    restartButton.setAttribute("type", "submit");
+    let restartWords = document.createTextNode("Wanna play again?")
+    restartButton.appendChild(restartWords)
+    letyouWin.appendChild(restartButton);
 }
 
 
+// let restartClick = document.querySelector('.restart')
+// restartClick.addEventListener('click', restart(){
+//     GetRandomPhrase()
+//     NoTwoWordsTheSame()
+//     phraseSplit()
+// });
 
-// if (userGuess = 0) {
-//     console.log("Game Over.")
-//     // display Game Over
-//     // play Video
-//     // display button asking "Try again?"
-//     // if button clicked, reset game (shuffle phrases array)
-// }
+   
+
+   
+
+
+
+///////////////////////////////  TRYING TO USE A FOR EACH FUNCTION
+
+// let numOfWrongGuesses = 7;
+// op = 0.1;
+
+// let containerOfButtons = document.querySelector('.container')
+// console.log(containerOfButtons)
+
+// containerOfButtons.addEventListener('click', function(evt) {
+//     evt.preventDefault();
+//     console.log(evt.target.id)
+
+//     if (evt.target !== containerOfButtons) {                  //  ignores clicking on container of buttons    
+           
+//         lettersOfEachPhrase.forEach(function(value){
+//             if (evt.target.id == lettersOfEachPhrase) {
+//                 console.log("bleh")
+//                 document.getElementsByTagName('span').removeAttribute("class");
+//                 event.target.disabled = true;
+//                 event.target.style.opacity = 0.3;
+//                 numOfCorrectGuesses++;
+
+//                 if (numOfCorrectGuesses === lettersOfEachPhrase.length) {
+//                     console.log("win");
+//                     win()
+//                 }
+//             }
+//             else {
+//                 return
+//             }
+//             if (evt.target.id !== lettersOfEachPhrase) {
+//                 console.log("poop")
+//                 event.target.disabled = true;
+//                 event.target.style.opacity = 0.3;
+//                 imageTagForImage.style.opacity = op; 
+//                 op += op * 0.5;
+//                 numOfWrongGuesses--;
+
+//                 if (numOfWrongGuesses == 7) {
+//                     console.log("over");
+//                 }
+
+//             }
+//             else {
+//                 return
+//             }
+
+//            });
+//         }});
+        
+
