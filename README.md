@@ -55,15 +55,28 @@ Change in to your new directory and run git log to see the commit history.
 
 
 ## Hurdles
-Hurdle #1:  Bootstrap doesn't play well with others. I tried using Bootstrap for the styling of the buttons, using cards and putting them in a container, but I couldn't adjust the spacing to use the full horizontal space. I finally had to abandon bootstrap and build it with HTML and CSS.
+Hurdle #1:  Bootstrap doesn't play well with others. I tried using Bootstrap for the styling of the buttons, using cards and putting them in a container, but I couldn't adjust the spacing to use the full horizontal space. 
 
-Hurdle #2: While I successfully was able to make a for loop that listened for the button A and console-logged "yes" when it matched a letter of the phrase, and "no" when it didn't match; I am having trouble making a loop that listens for all the buttons and does the same thing.
---> I had to make a container that surrounded all the buttons and listen for a click within that parent container div
+Solution: I finally had to abandon bootstrap and build it with HTML and CSS.
 
-Hurdle #3: My loop that is supposed to SHOW the letter of the button clicked is not synced correctly. Syncing up my phrase array (that the computer knows to iterate thru) vs the divs, classes, and attributes I made in the DOM to generate the visual dashes that the user sees.
+Hurdle #2: While I successfully was able to make a for loop that listened for a single button, and console-logged "yes" when it matched a letter of the phrase, and "no" when it didn't match; I had trouble making a loop that listened for all the buttons and did the same thing. The issue may be that I had multiple classes for each button.
 
-Hurdle #4: When I was creating my win segment of code, I was comparing the number of 'correct user guesses' to the length of the phrase. However, the spaces between words counted towards the length of the phrase, so even though the user guessed all letters correctly, they could not win bc the spaces were not being acocunted for.
+Solution: I had to make a container that surrounded all the buttons and listen for a click within that parent container div
+
+This led to another problem: if the user clicked outside the buttons, but nearby, it would still execute code.
+
+Solution: In my logic for listening for a button click, I had to explicitly state NOT to listen for a click the container //  if (evt.target !== allButtons) //
+
+
+Hurdle #3: When I was creating my win segment of code, I was comparing the number of 'correct user guesses' to the length of the phrase. However, the spaces between words counted towards the length of the phrase, so even though the user guessed all letters correctly, they could not win bc the spaces were not being acocunted for.
+
 Solution: I made an if statement, within the code where I built the divs holding the letters of the phrase, and said to increase the number of 'correct user guesses' each time it encountered a space " ".
+
+Hurdle #4:  While I managed to write the logic correctly to loop through the phrase if the user made a correct guess, when I added the logic for the wrong answer, the code that counted the number of wrong guesses, still added the correct guess to the number of wrong guesses.
+
+Solution: I had to use the function INCLUDES to target the letter directly (that corresponded to the button pressed) -- negating the need for a loop. 
+
+Solution: Also. I needed to use DATASET. When I generated each letter from my phrase I added the line //  placeholderForLetter.dataset.letterValue = lettersOfEachPhrase[i] // - so that each letter was automatically given a data-letter-value (that corresponded to it's actual letter (a,b,c,etc)) generated in the HTML code. [See line 151]. This way, if the phrase has 3 "a"s it will account for all and reveal the letter on the board.
 
 
 ## References: 
