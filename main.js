@@ -93,8 +93,8 @@ for (var i = 0; i < lettersOfEachPhrase.length; i++) {
     document.querySelector('#phrase').appendChild(divForLetter)
 
     placeholderForLetter = document.createElement('span')       // NEEDED TO ADD A SPAN IOT HIDE LETTERS ==> IDEA FROM DANNY
-    placeholderForLetter.className = "hide-me";             // hides letters
-    placeholderForLetter.dataset.letterValue = lettersOfEachPhrase[i]
+    placeholderForLetter.className = "hide-me";             
+    placeholderForLetter.dataset.letterValue = lettersOfEachPhrase[i]   // TARGETS THE LETTERS IN THE LOGIC BELOW
     divForLetter.appendChild(placeholderForLetter)
     // console.log(placeholderForLetter)
 
@@ -163,33 +163,26 @@ function playGame() {
                     }
                 }
 
-
-
-
-
             }
             else {
                 console.log('no letter found', evt.target.id)
                 numOfWrongGuesses--;
+                console.log(numOfWrongGuesses)
 
                 if (numOfWrongGuesses <= 7) {
                     event.target.disabled = true;
                     event.target.style.opacity = 0.3;
 
                     imageTagForImage.style.opacity = op;
-                    imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
-                    op += op * 0.025;
+                    // imageTagForImage.style.filter = 'alpha(opacity=" + op * 100 + ")';
+                    op += op * 0.3;
+                    console.log(op)
                 }
-                if (numOfWrongGuesses == 1) {
+                if (numOfWrongGuesses == 0) {
                     console.log("Game over");
+                    lose() 
                 }
             }
-
-
-
-            // } 
-            console.log("The number of wrong guesses is: " + numOfWrongGuesses)
-
 
         }
 
@@ -218,6 +211,21 @@ function win() {
     letyouWin.appendChild(restartButton);
 }
 
+function lose() {
+    imageTagForImage.style.opacity = 1;
+    youLose = document.createElement('p');
+    placeholder.appendChild(youLose);
+    addLose = document.createTextNode("Game over");
+    youLose.appendChild(addLose);
+
+    let restartButton = document.createElement('button')
+    restartButton.className = "restart";
+    restartButton.setAttribute("type", "submit");
+    let restartWords = document.createTextNode("Wanna play again?")
+    restartButton.appendChild(restartWords)
+    youLose.appendChild(restartButton);
+}
+
 
 // let restartClick = document.querySelector('.restart')
 // restartClick.addEventListener('click', restart(){
@@ -227,59 +235,5 @@ function win() {
 // });
 
 
-
-
-
-
-
-///////////////////////////////  TRYING TO USE A FOR EACH FUNCTION
-
-// let numOfWrongGuesses = 7;
-// op = 0.1;
-
-// let containerOfButtons = document.querySelector('.container')
-// console.log(containerOfButtons)
-
-// containerOfButtons.addEventListener('click', function(evt) {
-//     evt.preventDefault();
-//     console.log(evt.target.id)
-
-//     if (evt.target !== containerOfButtons) {                  //  ignores clicking on container of buttons    
-
-//         lettersOfEachPhrase.forEach(function(value){
-//             if (evt.target.id == lettersOfEachPhrase) {
-//                 console.log("bleh")
-//                 document.getElementsByTagName('span').removeAttribute("class");
-//                 event.target.disabled = true;
-//                 event.target.style.opacity = 0.3;
-//                 numOfCorrectGuesses++;
-
-//                 if (numOfCorrectGuesses === lettersOfEachPhrase.length) {
-//                     console.log("win");
-//                     win()
-//                 }
-//             }
-//             else {
-//                 return
-//             }
-//             if (evt.target.id !== lettersOfEachPhrase) {
-//                 console.log("poop")
-//                 event.target.disabled = true;
-//                 event.target.style.opacity = 0.3;
-//                 imageTagForImage.style.opacity = op; 
-//                 op += op * 0.5;
-//                 numOfWrongGuesses--;
-
-//                 if (numOfWrongGuesses == 7) {
-//                     console.log("over");
-//                 }
-
-//             }
-//             else {
-//                 return
-//             }
-
-//            });
-//         }});
 
 
