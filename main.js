@@ -112,7 +112,7 @@ for (var i = 0; i < lettersOfEachPhrase.length; i++) {
 
 //  Adding event listener to listen for click on buttons
 
-// ==> ARE WE NOT ABLE TO LISTEN ON MULTIPLE LEMENTS AT ONCE?? (ie could not get the quearySelectorAll to work with a click function, until I added a forEach function)
+// ==> ARE WE NOT ABLE TO LISTEN ON MULTIPLE ELEMENTS AT ONCE?? (ie could not get the quearySelectorAll to work with a click function, until I added a forEach function)
 
 // 1. Loop through all buttons, listening for a click
 // 2. If a button is clicked, check if the button letter (ie "a") equals any letter in the phrase
@@ -127,7 +127,7 @@ for (var i = 0; i < lettersOfEachPhrase.length; i++) {
 //              (4) increase userGuess count
 
 
-let numOfWrongGuesses = 7;
+let numOfWrongGuesses = 5;
 op = 0.1;
 
 let allButtons = document.querySelector('.container')
@@ -168,6 +168,8 @@ function playGame() {
                 console.log('no letter found', evt.target.id)
                 numOfWrongGuesses--;
                 console.log(numOfWrongGuesses)
+                let counter = document.querySelector('#guesses');
+                counter.textContent = numOfWrongGuesses;
 
                 if (numOfWrongGuesses <= 7) {
                     event.target.disabled = true;
