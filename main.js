@@ -1,5 +1,5 @@
 // ARRAY OF PHRASES CHOSEN BY CREATOR
-arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "i drink and i know things", "you know nothing jon snow", "chaos is a ladder", "hold the door"];
+arrayofPhrases = ["winter is coming", "valar morghulis", "valar dohaeris", "i drink and i know things", "you know nothing jon snow", "chaos is a ladder", "hold the door", "the things i do for love", "everyone is mine to torment", "burn them all"];
 console.log(arrayofPhrases)
 
 
@@ -8,7 +8,7 @@ console.log(arrayofPhrases)
 //  Reference:  Game of War Lab
 
 function GetRandomPhrase() {
-    var j = Math.floor((Math.random() * 7));
+    var j = Math.floor((Math.random() * 10));
     randomPhrase = arrayofPhrases[j];
     return randomPhrase;
 }
@@ -30,7 +30,7 @@ function NoTwoWordsTheSame() {
     } else {
         //track the last random word used
         lastUsedPhrase = randomPhrase[0];
-        return lastUsedPhrase
+        return randomPhrase
     }
 }
 NoTwoWordsTheSame()
@@ -202,15 +202,19 @@ function win() {
     imageTagForImage.style.minWidth = "500px";
     letyouWin = document.createElement('p');
     placeholder.appendChild(letyouWin)
-    addCongrats = document.createTextNode("Well, well well. Good job!");
+    addCongrats = document.createTextNode("Well, well well. Nicely done.");
     letyouWin.appendChild(addCongrats);
 
     let restartButton = document.createElement('button')
     restartButton.className = "restart";
     restartButton.setAttribute("type", "submit");
-    let restartWords = document.createTextNode("Wanna play again?")
+    let restartWords = document.createTextNode("Play again?")
     restartButton.appendChild(restartWords)
     letyouWin.appendChild(restartButton);
+
+    restartButton.addEventListener('click', function(){
+        location.reload(true);
+    })
 }
 
 function lose() {
@@ -223,9 +227,13 @@ function lose() {
     let restartButton = document.createElement('button')
     restartButton.className = "restart";
     restartButton.setAttribute("type", "submit");
-    let restartWords = document.createTextNode("Wanna play again?")
+    let restartWords = document.createTextNode("Play again?")
     restartButton.appendChild(restartWords)
     youLose.appendChild(restartButton);
+
+    restartButton.addEventListener('click', function(){
+        location.reload(true);
+    })
 }
 
 
